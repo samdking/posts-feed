@@ -36,7 +36,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     get root_path
 
-    assert_select '.like-button', text: '💚 5'
+    assert_select '.like-button', text: '❤️ 5'
   end
 
   test 'an anonymous user is created when viewing posts' do
@@ -77,7 +77,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     get root_path
 
-    assert_select '.like-button', text: '💚 8'
+    assert_select '.like-button', text: '❤️ 8'
   end
 
   test 'personal likes show as green' do
@@ -92,7 +92,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
     get root_path
 
-    assert_select '.like-button.bg-green-300', text: '💚 1'
-    assert_select '.like-button', text: '💚 0'
+    assert_select '.like-button.liked', text: '❤️ 1'
+    assert_select '.like-button', text: '❤️ 0'
   end
 end

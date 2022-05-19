@@ -17,5 +17,5 @@ code.mb-10.block.text-sm
           = post.collection_notes
           .likes
             span.absolute.bottom-0.right-0.p-3
-              .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'bg-green-300' if @liked_posts.include?(post.id)}"
+              .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'liked' if @liked_posts.include?(post.id)}"
                 = render "like", post: post
