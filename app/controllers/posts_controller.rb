@@ -9,15 +9,20 @@ class PostsController < ApplicationController
   end
 
   def like
-    if (like = @anonymous_user.likes.find { |like| like.post_id == params[:id].to_i })
+    post = @posts.find { |p| p.id == params[:id].to_i }
+
+    if (like = @anonymous_user.likes.find { |like| like.post_id == post.id })
       like.destroy
     else
-      like = @anonymous_user.likes.create(post_id: params[:id])
+      like = @anonymous_user.likes.create(post_id: post.id)
     end
 
-    post = @posts.find { |p| p.id == like.post_id }
-
-    Turbo::StreamsChannel.broadcast_replace_to "posts", target: "like_#{post.id}", partial: "posts/like", locals: { post: post }
+    Turbo::StreamsChannel.broadcast_replace_to "posts",
+      target: "like_#{post.id}",
+      partial: "posts/like",
+      locals: {
+        post: post
+      }
 
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.replace("like_#{post.id}", partial: 'like', locals: { post: post })}
