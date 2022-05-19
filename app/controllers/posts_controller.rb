@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   before_action :load_posts
 
   def index
-    @liked_posts = @anonymous_user.likes.map(&:post_id)
+    @likes = Like.where(post_id: @posts.map(&:id)).group(:post_id).count
   end
 
   def like
