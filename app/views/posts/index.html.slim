@@ -1,20 +1,24 @@
 = turbo_stream_from "posts"
 
-- @posts.group_by { |p| p.value['price'] > 0 }.each do |price, posts|
-  h1.text-3xl.font-bold.mb-5 = "#{price ? 'Paid' : 'Free'} Items"
-  ul.grid.grid-cols-3.gap-5
-    - @posts.each do |post|
-      li.bg-gray-200.rounded-lg.p-5.relative
-        h2.mb-4.text-xl.font-bold = post.title
-        .photos.mt-3.mb-4.flex.gap-x-2
-          - post.photos.each do |photo|
-            img> src=photo['files']['medium'] class="rounded-sm drop-shadow-md object-cover h-36 w-36"
-        p.mb-3 = post.description
-        p.mb-3 = "📍 #{post.location['town']}, #{post.location['country']}"
-        p
-          strong> Collect:
-          = post.collection_notes
-          .likes
-            span.absolute.bottom-0.right-0.p-3
-              .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'liked' if liked_post?(post)}"
-                = render "like", post: post
+- if @response.success?
+  - @posts.group_by { |p| p.value['price'] > 0 }.each do |price, posts|
+    h1.text-3xl.font-bold.mb-5 = "#{price ? 'Paid' : 'Free'} Items"
+    ul.grid.grid-cols-3.gap-5
+      - @posts.each do |post|
+        li.bg-gray-200.rounded-lg.p-5.relative
+          h2.mb-4.text-xl.font-bold = post.title
+          .photos.mt-3.mb-4.flex.gap-x-2
+            - post.photos.each do |photo|
+              img> src=photo['files']['medium'] class="rounded-sm drop-shadow-md object-cover h-36 w-36"
+          p.mb-3 = post.description
+          p.mb-3 = "📍 #{post.location['town']}, #{post.location['country']}"
+          p
+            strong> Collect:
+            = post.collection_notes
+            .likes
+              span.absolute.bottom-0.right-0.p-3
+                .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'liked' if liked_post?(post)}"
+                  = render "like", post: post
+- else
+  h1.mb-5.text-3xl.font-bold Apologies
+  p.mb-3 There was an error connecting to the service.

@@ -37,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def load_posts
-    @posts = PostService.new.posts
+    @response = PostService.new.posts
+    @posts = @response.posts
   end
 end
