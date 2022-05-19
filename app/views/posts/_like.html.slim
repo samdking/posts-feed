@@ -1,2 +1,2 @@
 = turbo_frame_tag "like_#{post.id}" do
-  = link_to "❤️ #{likes_for_post(post)}", like_post_path(post.id), data: { 'turbo-method' => :post, 'action' => 'like#like' }, class: 'block px-2 py-1'
+  = link_to "❤️ #{likes_for_post(post)}", like_post_path(post.id), data: { 'turbo-method' => :post, 'action' => 'like#toggle' }, class: 'block px-2 py-1'
