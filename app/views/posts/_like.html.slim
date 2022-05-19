@@ -1,0 +1,2 @@
+= turbo_frame_tag "post_#{post.id}" do
+  = link_to "💚 #{post.reactions['likes'] + Like.where(post_id: post.id).count}", like_post_path(post.id), data: { 'turbo-method' => :post, 'action' => 'like#like' }, class: 'block px-2 py-1'

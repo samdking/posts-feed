@@ -1,5 +1,6 @@
 code.mb-10.block.text-sm
-  = @posts.first.inspect
+  = @liked_posts.inspect
+= turbo_stream_from "likes"
 - @posts.group_by { |p| p.value['price'] > 0 }.each do |price, posts|
   h1.text-3xl.font-bold.mb-5 = "#{price ? 'Paid' : 'Free'} Items"
   ul.grid.grid-cols-3.gap-5
@@ -14,7 +15,7 @@ code.mb-10.block.text-sm
         p
           strong> Collect:
           = post.collection_notes
-        .likes
-          span.absolute.bottom-0.right-0.p-3
-            = "💚 #{post.reactions['likes']}"
-
+          .likes
+            span.absolute.bottom-0.right-0.p-3
+              .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'bg-green-300' if @liked_posts.include?(post.id)}"
+                = render "like", post: post
