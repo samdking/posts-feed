@@ -6,14 +6,13 @@ end
 
 class PostService
   def posts
-    uri = URI('https://s3-eu-west-1.amazonaws.com/olio-staging-images/developer/test-articles-v4.json')
+    response = HTTParty.get('https://s3-eu-west-1.amazonaws.com/olio-staging-images/developer/test-articles-v4.json')
 
-    response = Net::HTTP.get(uri)
-
-    body = JSON.parse(response)
-
-    PostsResponse.new(body.map { |post| OpenStruct.new(post) })
-  rescue SocketError => e
-    PostsResponse.new([], e.message)
+    if response.success?
+      body = JSON.parse(response.body)
+      PostsResponse.new(body.map { |post| OpenStruct.new(post) })
+    else
+      PostsResponse.new([], response.message)
+    end
   end
 end
