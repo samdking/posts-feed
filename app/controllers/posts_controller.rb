@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :create_anonymous_user
   before_action :load_posts
 
-  def index;
+  def index
     @liked_posts = @anonymous_user.likes.map(&:post_id)
   end
 
@@ -37,10 +37,6 @@ class PostsController < ApplicationController
   end
 
   def load_posts
-    uri = URI('https://s3-eu-west-1.amazonaws.com/olio-staging-images/developer/test-articles-v4.json')
-
-    body = JSON.parse(Net::HTTP.get(uri))
-
-    @posts = body.map { |post| OpenStruct.new(post) }
+    @posts = PostService.new.posts
   end
 end
