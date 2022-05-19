@@ -17,10 +17,10 @@ class PostsController < ApplicationController
 
     post = @posts.find { |p| p.id == like.post_id }
 
-    Turbo::StreamsChannel.broadcast_replace_to "likes", target: "post_#{post.id}", partial: "posts/like", locals: { post: post }
+    Turbo::StreamsChannel.broadcast_replace_to "posts", target: "like_#{post.id}", partial: "posts/like", locals: { post: post }
 
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("post_#{post.id}", partial: 'like', locals: { post: post })}
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("like_#{post.id}", partial: 'like', locals: { post: post })}
       format.html         { redirect_to posts_url }
     end
   end
