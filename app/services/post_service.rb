@@ -10,7 +10,7 @@ class PostService
 
     if response.success?
       body = JSON.parse(response.body)
-      PostsResponse.new(body.map { |post| OpenStruct.new(post) })
+      PostsResponse.new(body.map { |post| Post.new(post) })
     else
       PostsResponse.new([], response.message)
     end
