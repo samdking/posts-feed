@@ -33,10 +33,10 @@ $ rails db:migrate
 
 ## Booting the app
 
-To boot the app, run the following command to start the Rails server:
+To boot the app, run the following command to start the Rails server and package up the CSS:
 
 ```
-$ rails server
+$ bin/dev
 ```
 
 ## Running the test suite
