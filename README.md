@@ -47,6 +47,12 @@ To run the test suite, run the following command:
 $ rails test
 ```
 
+To also run system tests, which use a Headless chrome browser, run:
+
+```
+$ rails test:all
+```
+
 ## Gem usage explanation
 
 ### Slim
