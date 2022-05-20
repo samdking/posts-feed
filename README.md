@@ -2,7 +2,7 @@
 
 This is a tiny proof-of-concept Rails app for displaying a JSON feed of posts. Each anonymous user can like a post, and receive likes other users contribute in real time.
 
-## How to install
+## How to install
 
 In this example, and for the sake of brevity, these instructions will be for a Mac operating system only.
 
