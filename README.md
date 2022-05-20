@@ -6,7 +6,7 @@ This is a tiny proof-of-concept Rails app for displaying a JSON feed of posts. E
 
 In this example, and for the sake of brevity, these instructions will be for a Mac operating system only.
 
-This app was built using Ruby 2.7.6. My recommendation for managing Ruby versions is to use (RVM)[https://rvm.io/]. To install Ruby 2.7.6 on your machine, run the command:
+This app was built using Ruby 2.7.6. My recommendation for managing Ruby versions is to use [RVM](https://rvm.io/). To install Ruby 2.7.6 on your machine, run the command:
 
 ```
 $ rvm install 2.7.6
