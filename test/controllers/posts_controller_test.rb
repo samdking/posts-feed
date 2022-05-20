@@ -104,10 +104,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'h1', 'Apologies'
     assert_select 'ul', count: 0
   end
-
-  protected
-
-  def stub_successful_posts_response(posts)
-    PostService.any_instance.stubs(:posts).returns(PostsResponse.new(posts))
-  end
 end
