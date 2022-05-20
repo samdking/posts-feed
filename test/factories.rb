@@ -13,7 +13,6 @@ FactoryBot.define do
     sequence(:title) { |n| "Post ##{n}" }
     reactions { { 'likes' => 0 } }
     value { { 'price' => 0 } }
-    photos { [] }
     location { { 'town' => 'Brighton', 'country' => 'United Kingdom' } }
   end
 end

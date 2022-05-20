@@ -7,9 +7,10 @@
       - @posts.each do |post|
         li.bg-gray-200.rounded-lg.p-5.relative
           h2.mb-4.text-xl.font-bold = post.title
-          .photos.mt-3.mb-4.flex.gap-x-2
-            - post.photos.each do |photo|
-              img> src=photo['files']['medium'] class="rounded-sm drop-shadow-md object-cover h-36 w-36"
+          - if post.photos && post.photos.any?
+            .photos.mt-3.mb-4.flex.gap-x-2
+              - post.photos.each do |photo|
+                img> src=photo['files']['medium'] class="rounded-sm drop-shadow-md object-cover h-36 w-36"
           p.mb-3 = post.description
           p.mb-3 = "📍 #{post.location['town']}, #{post.location['country']}"
           p
