@@ -29,6 +29,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get root_path
 
     assert_select 'h1', text: 'Paid Items'
+    assert_select 'p', text: 'Price: $10.00'
   end
 
   test "posts contain a like button" do

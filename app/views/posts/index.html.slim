@@ -16,10 +16,14 @@
           p
             strong> Collect:
             = post.collection_notes
-            .likes
-              span.absolute.bottom-0.right-0.p-3
-                .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'liked' if liked_post?(post)}"
-                  = render "like", post: post
+          - if post.value['price'] > 0
+            p
+              strong> Price:
+              = number_to_currency(post.value['price'])
+          .likes
+            span.absolute.bottom-0.right-0.p-3
+              .like-button.rounded-md.border.border-gray-400 data-controller="like" class="#{'liked' if liked_post?(post)}"
+                = render "like", post: post
 - else
   h1.mb-5.text-3xl.font-bold Apologies
   p.mb-3 There was an error connecting to the service.
