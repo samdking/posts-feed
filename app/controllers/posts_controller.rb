@@ -1,5 +1,3 @@
-require 'net/http'
-
 class PostsController < ApplicationController
   before_action :create_anonymous_user
   before_action :load_posts
